@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: ai-detector-bot
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: DATABASE_URL
+        value: "sqlite+aiosqlite:///./data/bot.db"
+      - key: ADMIN_IDS
+        sync: false
+    disk:
+      name: bot-data
+      mountPath: /app/data
+      sizeGB: 1
